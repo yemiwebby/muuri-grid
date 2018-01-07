@@ -16,17 +16,11 @@
     </div>
   </section>
   
-  <div class="grid">
+  <div class="grid grid1">
     
     <div class="item">
       <div class="item-content">
         <img src="images/chrisoncode.jpg" alt="Scotch Authors">
-      </div>
-    </div>
-    
-    <div class="item">
-      <div class="item-content">
-        <img src="images/codebeast.jpg" alt="Scotch Authors">
       </div>
     </div>
     
@@ -38,61 +32,33 @@
     
     <div class="item">
       <div class="item-content">
-        <img src="images/calvin.jpg" alt="Scotch Authors">
+        <img src="images/codebeast.jpg" alt="Scotch Authors">
       </div>
-    </div>
-    
-    <div class="item">
-      <div class="item-content">
-        <img src="images/chimezie.jpg" alt="Scotch Authors">
-      </div>
-    </div>
-    
-    <div class="item">
-      <div class="item-content">
-        <img src="images/molly.jpg" alt="Scotch Authors">
-      </div>
-    </div>
-    
-    <div class="item">
-      <div class="item-content">
-        <img src="images/prosper.jpg" alt="Scotch Authors">
-      </div>
-    </div>
-    
-    <div class="item">
-      <div class="item-content">
-        <img src="images/ryan.jpg" alt="Scotch Authors">
-      </div>
-    </div>
-    
-    <div class="item">
-      <div class="item-content">
-        <img src="images/nick.jpeg" alt="Scotch Authors">
-      </div>
-    </div>
-    
-    <div class="item">
-      <div class="item-content">
-        <img src="images/samuel.jpg" alt="Scotch Authors">
-      </div>
-    </div>
-    
-    <div class="item">
-      <div class="item-content">
-        <img src="images/stephen.jpg" alt="Scotch Authors">
-      </div>
-    </div>
-    
-    <div class="item">
-      <div class="item-content">
-        <img src="images/ganga.jpg" alt="Scotch Authors">
-      </div>
-    </div>
-    
+    </div> 
   </div>
-  
-  
+
+  <section class="secondLayout">
+      <div class="grid grid2">
+          <div class="item">
+            <div class="item-content">
+              <img src="images/chrisoncode.jpg" alt="Scotch Authors">
+            </div>
+          </div>
+      
+          <div class="item">
+              <div class="item-content">
+                <img src="images/molly.jpg" alt="Scotch Authors">
+              </div>
+            </div>
+            
+            <div class="item">
+              <div class="item-content">
+                <img src="images/prosper.jpg" alt="Scotch Authors">
+              </div>
+            </div>
+        </div>
+        <button id="submitBtn" onclick="getAllItems()">Submit</button>        
+  </section> 
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>
@@ -101,8 +67,27 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/muuri/0.5.3/muuri.min.js"></script>
 
 <script>
-  const grid = new Muuri('.grid', {
-    dragEnabled: true
+  const grid1 = new Muuri('.grid1', {
+    dragEnabled: true,
+    dragContainer: document.body,
+    dragSort: function(){
+      return [grid1, grid2]
+    }
+    // dragAxis: 'y'
   });
+
+  const grid2 = new Muuri('.grid2', {
+    dragEnabled: true,
+    dragContainer: document.body,
+    dragSort: function(){
+      return [grid1, grid2]
+    }
+  });
+
+  function getAllItems() {
+    // var elem = grid2.getElement();
+    var elem = grid2.getItems();
+    console.log(elem);
+  }
 </script>
 </html>

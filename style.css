@@ -16,16 +16,6 @@ body {
     z-index: 1;
 }
 
-.item .muuri-item-dragging {
-    z-index: 3;
-}
-.item .muuri-item-releasing {
-    z-index: 2;
-}
-.item .muuri-item-hidden {
-    z-index: 0;
-}
-
 .item-content {
     position: relative;
     width: 100%;
@@ -52,4 +42,15 @@ img {
 .title {
     font-weight: 400px;
     font-size: 2.5rem;
+} 
+
+.secondLayout {
+    margin: 50px 5px;
+    border: 2px solid #f5f5f5;
+}
+
+#submitBtn {
+    padding: 10px;
+    color: #ffffff;
+    background: green;
 }
