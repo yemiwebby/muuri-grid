@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <title> Muuri Grid </title>
+</head>
+<body>
+    
+    <section id="sortingDemo" class="table-demo">
+        <h1 class="heading">Work Flow Demo</h1>
+        <div class="demo-board muuri">
+            <div class="demo-column">
+                <div class="demo-column-header">Table One </div>
+                <div class="demo-column-content table-one">
+                    <div class="demo-item">
+                        <div class="demo-item-content">
+                            <span>First Item table one</span>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-item">
+                        <div class="demo-item-content">
+                            <span>Second Item table one </span>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-item">
+                        <div class="demo-item-content">
+                            <span>Third Item table one</span>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-item">
+                        <div class="demo-item-content">
+                            <span>Fourth Item table one </span>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-item">
+                        <div class="demo-item-content">
+                            <span>Fifth Item table one </span>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-item">
+                        <div class="demo-item-content">
+                            <span>Sixth Item table one </span>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-item">
+                        <div class="demo-item-content">
+                            <span>Seventh Item table one </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="demo-column">
+                <div class="demo-column-header">Table Two </div>
+                <div class="demo-column-content table-two">
+                    <div class="demo-item grid2">
+                        <div class="demo-item-content">
+                            <span>First Item table two</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="gallery">
+        <h1 class="heading">Gallery Demo</h1>
+        <div class="grid grid1">
+            <div class="item">
+                <div class="item-content">
+                    <img src="http://lorempixel.com/200/200/nature/1/">
+                </div>
+            </div>
+            
+            <div class="item">
+                <div class="item-content">
+                    <img src="http://lorempixel.com/200/200/nature/2/">
+                </div>
+            </div>
+            
+            <div class="item">
+                <div class="item-content">
+                    <img src="http://lorempixel.com/200/200/nature/3/">
+                </div>
+            </div> 
+            
+            <div class="item">
+                <div class="item-content">
+                    <img src="http://lorempixel.com/200/200/nature/4/">
+                </div>
+            </div>
+            
+            <div class="item">
+                <div class="item-content">
+                    <img src="http://lorempixel.com/200/200/nature/5/">
+                </div>
+            </div>
+            
+            <div class="item">
+                <div class="item-content">
+                    <img src="http://lorempixel.com/200/200/nature/6/">
+                </div>
+            </div>
+            
+            <div class="item">
+                <div class="item-content">
+                    <img src="http://lorempixel.com/200/200/nature/7/">
+                </div>
+            </div>
+            
+            <div class="item">
+                <div class="item-content">
+                    <img src="http://lorempixel.com/200/200/nature/8/">
+                </div>
+            </div>
+            
+            <div class="item">
+                <div class="item-content">
+                    <img src="http://lorempixel.com/200/200/nature/9/">
+                </div>
+            </div>
+            
+            <div class="item">
+                <div class="item-content">
+                    <img src="http://lorempixel.com/200/200/nature/10/">
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-content">
+                    <img src="http://lorempixel.com/200/200/nature/11/">
+                </div>
+            </div>
+            
+            <div class="item">
+                <div class="item-content">
+                    <img src="http://lorempixel.com/200/200/nature/12/">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/muuri/0.5.3/muuri.min.js"></script>
+    
+    <script>
+        const grid1 = new Muuri('.grid1', {
+            dragEnabled: true,
+            dragContainer: document.body
+        });
+        
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            var docElem = document.documentElement;
+            var table = document.querySelector('.table-demo');
+            var board = table.querySelector('.demo-board');
+            var itemContainers = Array.prototype.slice.call(table.querySelectorAll('.demo-column-content'));
+            var columnGrids = [];
+            var completed = [];
+            var dragCounter = 0;
+            var boardGrid;
+            
+            itemContainers.forEach(function (container) {
+                
+                var grid = new Muuri(container, {
+                    items: '.demo-item',
+                    layoutDuration: 400,
+                    layoutEasing: 'ease',
+                    dragEnabled: true,
+                    dragSort: function () {
+                        return columnGrids;
+                    },
+                    dragSortInterval: 0,
+                    dragContainer: document.body,
+                    dragReleaseDuration: 400,
+                    dragReleaseEasing: 'ease'
+                });
+                
+                grid.on('dragStart', function (item) {
+                    // ++dragCounter;
+                    // console.log(dragCounter);
+                    docElem.classList.add('dragging');
+                    item.getElement().style.width = item.getWidth() + 'px';
+                    item.getElement().style.height = item.getHeight() + 'px';
+                });
+                
+                grid.on('receive', function(item) {
+                    completed.push(item);
+                    console.log(completed);
+                });
+                
+                // .on('dragEnd', function (item) {
+                    //     console.log(item);
+                    //     console.log("Drag End");
+                    // if (--dragCounter < 1) {
+                        //     docElem.classList.remove('dragging');
+                        // }
+                        // })
+                        // .on('dragReleaseEnd', function (item) {
+                            //     item.getElement().style.width = '';
+                            //     item.getElement().style.height = '';
+                            //     columnGrids.forEach(function (muuri) {
+                                //         muuri.refreshItems();
+                                //     });
+                                // })
+                                // .on('layoutStart', function () {
+                                    //     boardGrid.refreshItems().layout();
+                                    // });
+                                    
+                                    columnGrids.push(grid);
+                                    
+                                });
+                                
+                                demoGrid = new Muuri('.demo-board', {
+                                    layoutDuration: 400,
+                                    layoutEasing: 'ease',
+                                    dragEnabled: true,
+                                    dragSortInterval: 0,
+                                    dragStartPredicate: {
+                                        handle: '.demo-column-header'
+                                    },
+                                    dragReleaseDuration: 400,
+                                    dragReleaseEasing: 'ease'
+                                });   
+                                
+                                // function getAllItems() {
+                                    //     var elem = grid2.getItems();
+                                    //     console.log(completed);
+                                    // }             
+                                });
+                                
+                                // const grid2 = new Muuri('.grid2');
+                                
+                                function getAllItems() {
+                                    // var elem = grid2.getItems();
+                                    console.log(completed);
+                                }  
+                            </script>        
+                        </body>
+                        </html>
